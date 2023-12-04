@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from women import views # from women.views import * - тогда можно записывать коротко функции и классы из этого модуля
+from women.views import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('women/', include('women.urls')) # если добавить в путь суффиксом для всех путей которые включены
     path('', include('women.urls'))
 ]
+
+handler404 = page_not_found
