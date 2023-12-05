@@ -6,7 +6,13 @@ from django.template.defaultfilters import slugify # фильтры
 
 # Create your views here.
 
-menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+# menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
+menu = [
+    {'title': 'О сайте', 'url_name': 'about'},
+    {'title': 'Добавить Статью', 'url_name': 'add_page'},
+    {'title': 'Обратная связь', 'url_name': 'contact'},
+    {'title': 'Войти', 'url_name': 'login'},
+]
 
 class MyClass:
     def __init__(self, a, b):
@@ -37,6 +43,9 @@ def index(request): #HttpRequest
     }
     return render(request, 'women/index.html', context=data)
 
+def show_post(request, post_id):
+    return HttpResponse(f'Отображение статьи с id = {post_id}')
+
 def about(request):
     data = {
         'title': 'о сайте',
@@ -44,28 +53,38 @@ def about(request):
     }
     return render(request, 'women/about.html', context=data)
 
-def categories(request, cat_id): #HttpRequest
-    return HttpResponse(f'<h1>Статьи по Категориям</h1><p>id: {cat_id}</p>')
+def add_page(request):
+    return HttpResponse('Добавление статьи')
 
-def categories_by_slug(request, cat_slug):
-    if request.GET:
-        print(request.GET)
-    return HttpResponse(f'<h1>Статьи по Категориям</h1><p>slug: {cat_slug}</p>')
+def contact(request):
+    return HttpResponse('Обратная связь')
 
-
-def archive(request, year):
-    if year > 2023:
-        # raise Http404()
-        # return redirect('/') # Начальный Адрес или конкретный адрес
-        # return redirect(index) # Через Функцию представления
-        # return redirect('/', permanent=True) # 301 - постоянная ссылка перенаправления если Ложь - 302 временная
-        # return redirect('home') # Через Имя Функиции представления - рекомендуемый способ перенаправления
-        # return redirect('cats', 'music')
-        uri = reverse('cats', args=('music', ))
-        # return redirect(uri)
-        # return HttpResponseRedirect(uri)
-        return HttpResponsePermanentRedirect()
-    return HttpResponse(f'<h1>Архив по годам</h1><p>year: {year}</p>')
+def login(request):
+    return HttpResponse('Авторизация')
 
 def page_not_found(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена.</h1>')
+
+
+# def categories(request, cat_id): #HttpRequest
+#     return HttpResponse(f'<h1>Статьи по Категориям</h1><p>id: {cat_id}</p>')
+#
+# def categories_by_slug(request, cat_slug):
+#     if request.GET:
+#         print(request.GET)
+#     return HttpResponse(f'<h1>Статьи по Категориям</h1><p>slug: {cat_slug}</p>')
+#
+# def archive(request, year):
+#     if year > 2023:
+#         # raise Http404()
+#         # return redirect('/') # Начальный Адрес или конкретный адрес
+#         # return redirect(index) # Через Функцию представления
+#         # return redirect('/', permanent=True) # 301 - постоянная ссылка перенаправления если Ложь - 302 временная
+#         # return redirect('home') # Через Имя Функиции представления - рекомендуемый способ перенаправления
+#         # return redirect('cats', 'music')
+#         uri = reverse('cats', args=('music', ))
+#         # return redirect(uri)
+#         # return HttpResponseRedirect(uri)
+#         return HttpResponsePermanentRedirect()
+#     return HttpResponse(f'<h1>Архив по годам</h1><p>year: {year}</p>')
+
