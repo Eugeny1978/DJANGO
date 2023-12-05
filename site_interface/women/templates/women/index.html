@@ -4,15 +4,20 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <p>{{ menu }}</p>
-    <p>{{ float }}</p>
-    <p>{{ lst }}</p>
-    <p>{{ set }}</p>
-    <p>{{ dict }}</p>
-    <p>{{ dict.key_1 }}</p>
-    <p>{{ dict.key_1 }} {{ dict.key_2 }}</p>
-    <p>{{ obj }}</p>
-    <p>{{ obj.a }}</p>
-    <h1>{{ title }}</h1>
+    <p> {{ menu|join:' | ' }}</p>
+    <h1>{{ title|capfirst }}</h1>
+    <ul>
+        {% for post in posts %}
+        {% if post.is_published%}
+        <li>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
 </body>
 </html>
