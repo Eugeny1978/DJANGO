@@ -51,7 +51,7 @@ def about(request):
         'title': 'о сайте',
         'menu': menu
     }
-    return render(request, 'women/about.html', context=data)
+    return render(request, 'women/about.html', context=data) #
 
 def add_page(request):
     return HttpResponse('Добавление статьи')

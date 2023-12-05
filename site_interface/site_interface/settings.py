@@ -55,7 +55,7 @@ ROOT_URLCONF = 'site_interface.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], # [BASE_DIR / 'women' / 'templates'] - позволяет явно прописывать где искать шаблоны
+        'DIRS': [ BASE_DIR / 'templates', ], # - позволяет явно прописывать где искать шаблоны
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
