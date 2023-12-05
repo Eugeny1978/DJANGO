@@ -36,3 +36,6 @@ python manage.py startapp <имя приложения>
 
 Запуск Приложения
 python manage.py runserver
+
+Подключить статику (файлы) для просмотра в режиме DEBUG = False
+python manage.py runserver --insecure
